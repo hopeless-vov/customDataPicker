@@ -1,38 +1,263 @@
+
 .App {
+  text-align: center; 
+}    
+.RangeExample {
+  display: grid;
+  justify-self: center;
+  flex-direction: column;  
+}
+
+.DayPicker-wrapper {
+  padding: 0px!important;
+  outline: none;
+}
+
+.DayPicker-Day {
+  outline: none;
+  width: 40px;
+  height: 40px;
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px; 
+  display: flex;
+  align-items: center;
   text-align: center;
+  letter-spacing: 0.25px; 
+  color: #333333;
+  padding: 0!important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.DayPicker-Day--start, .DayPicker-Day--end {
+  background-color: #424770!important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end) {
+  border-radius: 0!important;
+  padding: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+
+.DayPicker-Day--start, .DayPicker-Day--end {
+  position: relative;
+  z-index: 2;
+}
+
+.DayPicker-Day--start::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 50%;
+  background: rgba(66,71,112,0.2);
+  z-index: 1;
+}
+
+.Picker-Day--selected:nth-child(2n) {
+  font-size: 20px!important;
+}
+
+.DayPicker-Day--end::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 50%;
+  bottom: 0;
+  left: 0;
+  background: rgba(66,71,112,0.2);
+  z-index: 1;
+}
+
+.DayPicker-Day:last-child {
+  border-radius: 50%!important;
+}
+
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside):not(.DayPicker-Day--start):not(.DayPicker-Day--end) {
+  background: rgba(66,71,112,0.2);
+  color: #000000;
+}
+
+.DayPicker-Day--outside {
+  background-color: #ffffff!important; 
+} 
+
+.DayPicker-Day--outside::before, .DayPicker-Day--outside::after {
+  background-color: #ffffff!important;
+}
+
+.DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):last-child {
+  border-radius: 0 50px 50px 0!important;
+}
+
+.DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):first-child {
+  border-radius: 50px 0px 0px 50px!important;
+}
+
+.DayPicker-NavBar {
+  display: none;
+}  
+
+.DayPicker-Caption, .DayPicker-Weekdays {
+  display: none!important;
+} 
+
+.DayPicker-Months {
+  display: flex;
+  gap: 40px;
+}
+
+.DayPicker-Month {
+  margin: 0px!important; 
+}
+
+.DayPicker-Month:last-child .DayPicker-Body .DayPicker-Week:first-child .DayPicker-Day--outside:last-child{
+  border: 1px solid black!important;
+}
+
+.calendaurItems {
+  padding: 24px 24px 31px 32px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 42px;
+  justify-self: center!important;
+  border-radius: 12px; 
+  justify-content: space-between; 
+  margin: 0px auto;
+  max-width: 820px;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.calendaurItems .clendar {
   display: flex;
   flex-direction: column;
+  gap: 8px;
+  order: 1;
+}
+
+.calendaurItems .clendar .navigation {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: repeat(2,1fr);
+  justify-items: start;
+  padding-left: 18px;
+}
+
+.calendaurItems .clendar .navigation .infoAboutMonth {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-self: stretch;
+}
+
+.calendaurItems .clendar .navigation .infoAboutMonth span {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px; 
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  letter-spacing: 0.44px; 
+  color: #333333;
 }
 
-.App-link {
-  color: #61dafb;
+.calendaurItems .clendar .navigation .infoAboutMonth .choosenDate {
+  padding: 0px 16px;
+  border: 1px solid #C4C4C4;
+  box-sizing: border-box;
+  border-radius: 8px; 
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.calendaurItems .clendar .navigation .infoAboutMonth .choosenDate span {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px; 
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.44px; 
+  color: #333333;
+}
+
+.calendaurItems .clendar .months {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  justify-items: start;
+  margin-top: 24px; 
+}
+
+.calendaurItems .clendar .months .month {
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(229,229,229,0.5);
+  width: 100%;
+  display: grid;
+  align-content: start;
+  grid-template-columns: repeat(7, 1fr);
+  justify-items: center;
+}
+
+.calendaurItems .clendar .months .month span {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px; 
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.4px; 
+  color: #424770; 
+  opacity: 0.5;
+}
+
+.calendaurItems .clendar .buttonsToApply {
+  display: flex;
+  gap: 16px;
+}
+
+.calendaurItems .clendar .buttonsToApply button {
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 19px; 
+  color: #FFFFFF; 
+  background: #424770;
+  border-radius: 8px;
+  outline: none;
+  border: 0;
+  cursor: pointer;
+  padding: 10.5px 50px;
+}
+
+.calendaurItems .clendar .buttonsToApply button:first-child {
+  border: 1px solid #424770;
+  background: #ffffff;
+  color: #424770; 
+}
+
+.calendaurItems .timesNavigation {
+  order: 2;
+  display: flex;
+  flex-direction: column;
+  justify-self: start;
+  text-align: start;
+  gap: 16px;
+  padding-top: 5px;
+} 
+
+.calendaurItems .timesNavigation span {
+  cursor: pointer; 
+  font-family: Manrope;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 28px; 
+  color: #404040;
 }
